@@ -11,7 +11,6 @@ include_once('templates/header.php');
 </div>
 <!-- /.container-fluid -->
 
-
 <?php
 include_once('templates/footer.php');
 ?>

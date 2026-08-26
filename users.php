@@ -19,7 +19,7 @@ include_once('templates/header.php');
     <?php
     // jika ada tombol simpan
     if (isset($_POST['simpan'])) {
-        if (tambah_tamu($_POST) > 0) {
+        if (tambah_user($_POST) > 0) {
     ?>
             <div class="alert alert-success" role="alert">
                 Data berhasil disimpan!
@@ -82,12 +82,12 @@ include_once('templates/header.php');
 
 <?php
 // mengambil data barang dari tabel dengan kode terbesar
-$query = mysqli_query($koneksi, "SELECT max(id_tamu) as kodeTerbesar FROM buku_tamu");
-$data = mysqli_fetch_assoc($query);
-$kodeTamu = $data['kodeTerbesar'];
+$query = mysqli_query($koneksi, "SELECT max(id_user) as kodeTerbesar FROM users");
+$data = mysqli_fetch_array($query);
+$kodeUser = $data['kodeTerbesar'];
 
 // mengambil angka dari kode barang terbesar, menggunakan fungsi substr dan diubah ke integer dengan (int)
-$urutan = (int) substr($kodeTamu, 2, 3);
+$urutan = (int) substr($kodeUser, 2, 3);
 
 // nomor yang diambil akan ditambah 1 untuk menentukan nomor urut berikutnya
 $urutan++;
@@ -96,8 +96,8 @@ $urutan++;
 // string sprintf("%03s", $urutan); berfungsi untuk membuat string menjadi 3 karakter
 
 // angka yang diambil tadi digabungkan dengan kode huruf yang kita inginkan, misalnya zt
-$huruf = "zt";
-$kodeTamu = $huruf . sprintf("%03s", $urutan);
+$huruf = "usr";
+$kodeUser = $huruf . sprintf("%03s", $urutan);
 ?>
 
 <!-- Modal Tambah -->
@@ -112,39 +112,28 @@ $kodeTamu = $huruf . sprintf("%03s", $urutan);
       </div>
         <div class="modal-body">
             <form action="" method="post">
-                <input type="hidden" name="id_tamu" id="id_tamu" value="<?= $kodeTamu ?>">
+                <input type="hidden" name="id_user" id="id_user" value="<?= $kodeUser ?>">
                 <div class="form-group row">
-                    <label for="nama_tamu" class="col-sm-3 col-form-label">Nama Tamu</label>
+                    <label for="username" class="col-sm-3 col-form-label">Username</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="nama_tamu" name="nama_tamu">
+                        <input type="text" class="form-control" id="username" name="username">
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
+                    <label for="password" class="col-sm-3 col-form-label">Password</label>
                     <div class="col-sm-8">
-                        <textarea class="form-control" name="alamat" id="alamat"></textarea>
+                        <input type="password" class="form-control" name="password" id="password">
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="no_hp" class="col-sm-3 col-form-label">No. Telepon</label>
+                    <label for="user_role" class="col-sm-3 col-form-label">User Role</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="no_hp" name="no_hp">
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="bertemu" class="col-sm-3 col-form-label">Bertemu dg.</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="bertemu" name="bertemu">
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="kepentingan" class="col-sm-3 col-form-label">Kepentingan</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="kepentingan" name="kepentingan">
+                        <select name="user_role" id="user_role" class="form-control">
+                            <option value="admin">Administrator</option>
+                            <option value="operator">Operator</option>
+                        </select>
                     </div>
                 </div>
                     <div class="modal-footer">

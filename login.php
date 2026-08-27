@@ -1,6 +1,6 @@
 <?php
 require 'koneksi.php';
-if (isset($_POST['login'])) {
+if(isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
@@ -9,15 +9,16 @@ if (isset($_POST['login'])) {
     // cek apakah ada username
     if(mysqli_num_rows($result) === 1) {
 
-        // cek apakah passwordnya benar
-        $row = mysqli_fetch_assoc($result);
+    // cek apakah passwordnya benar
+    $row = mysqli_fetch_assoc($result);
 
-        if (password_verify($password, $row['password'])) {
+    if(password_verify($password, $row['password'])) {
+        
 
-            // login berhasil
-            header("Location: index.php");
-            exit;
-        }
+        // login berhasil
+        header("Location: index.php");
+        exit;
+    }
     }
 
     $error = true;
@@ -62,7 +63,7 @@ if (isset($_POST['login'])) {
                         <!-- Nested Row within Card Body -->
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-block bg-login-image">
-                                <img src="assets/images/login-page.php" alt="">
+                                <img src="assets/images/login-page.png" alt="">
                             </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
@@ -72,16 +73,17 @@ if (isset($_POST['login'])) {
                                     <form method="post" action="" class="user">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
-                                                id="username" name="username" placeholder="Username...">
+                                                id="username" name="username"
+                                                placeholder="Username...">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="password" name="password" placeholder="Password..">
+                                                id="password" name="password" placeholder="Password...">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="remember" name="remember">
-                                                <label class="custom-control-label" for="customCheck">Remember
+                                                <label class="custom-control-label" for="remember">Remember
                                                     Me</label>
                                             </div>
                                         </div>
@@ -106,17 +108,16 @@ if (isset($_POST['login'])) {
     </div>
 
     <body class="bg-gradient-primary">
-
         <div class="container">
 
-            <?php
-            if(isset($error)) : ?>
-            <div class="alert alert-danger mt-3" role="alert">
-                Username atau password salah!
-            </div>
-            <?php
-            endif;
-            ?>
+        <?php
+        if(isset($error)) : ?>
+        <div class="alert alert-danger mt-3" role="alert">
+            Username atau password salah!
+        </div>
+        <?php
+        endif;
+        ?>
         </div>
     </body>
 

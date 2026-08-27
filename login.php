@@ -1,5 +1,15 @@
 <?php
+// memular session
+session_start();
+
+// cek bila ada user yang sudah login maka akan redirect ke halaman dashboard
+if(isset($_SESSION['login'])) {
+    header('Location: index.php');
+    exit;
+}
+
 require 'koneksi.php';
+
 if(isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -9,16 +19,18 @@ if(isset($_POST['login'])) {
     // cek apakah ada username
     if(mysqli_num_rows($result) === 1) {
 
-    // cek apakah passwordnya benar
-    $row = mysqli_fetch_assoc($result);
+        // cek apakah passwordnya benar
+        $row = mysqli_fetch_assoc($result);
 
-    if(password_verify($password, $row['password'])) {
-        
+        if(password_verify($password, $row['password'])) {
+            // set session
+            $_SESSION['login'] = true;
+            $_SESSION['username'] = $username;
 
-        // login berhasil
-        header("Location: index.php");
-        exit;
-    }
+            // login berhasil
+            header("Location: index.php");
+            exit;
+        }
     }
 
     $error = true;

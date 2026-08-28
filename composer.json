@@ -1,0 +1,12 @@
+{
+    "name": "user/buku-tamu",
+    "authors": [
+        {
+            "name": "Eji Putra",
+            "email": "ejiputra123@gmail.com"
+        }
+    ],
+    "require": {
+        "phpoffice/phpspreadsheet": "^5.9"
+    }
+}

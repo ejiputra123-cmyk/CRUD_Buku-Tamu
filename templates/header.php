@@ -1,3 +1,13 @@
+<?php
+// memulai session
+session_start();
+
+// cek bila tidak ada user yang login maka akan redirect ke halaman login
+if (!isset($_SESSION['login'])) {
+    header('location:login.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,7 +51,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div class="sidebar-brand-icon">
                     <i class="fas fa-school"></i>
                 </div>
@@ -52,17 +62,23 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
+
             <li class="nav-item">
                 <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="buku-tamu.php">
-                    <i class="fas fa-fw fa-book-open"></i>
-                    <span>Buku Tamu</span></a>
-            </li>
+            <?php
+            // cek apabila ada user login dan user role nya adalah operator maka tampilkan buku-tamu
+            if (isset($_SESSION['role']) && $_SESSION['role'] == 'operator') :
+            ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="buku-tamu.php">
+                        <i class="fas fa-fw fa-book-open"></i>
+                        <span>Buku Tamu</span></a>
+                </li>
+                <?php endif; ?>
 
             <li class="nav-item">
                 <a class="nav-link" href="laporan.php">
@@ -70,14 +86,20 @@
                     <span>Laporan</span></a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="users.php">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>User</span></a>
-            </li>
+            <?php
+            // cek apabila ada user login dan user role nya adalah admin maka tampilkan user
+            if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') :
+            ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="users.php">
+                        <i class="fas fa-fw fa-users"></i>
+                        <span>User</span></a>
+                </li>
+            <?php endif; ?>
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
-
+            
             <?php
             // cek apabila ada user login maka tampilkan logout
             if(isset($_SESSION['login'])) :

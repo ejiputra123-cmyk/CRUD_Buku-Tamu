@@ -1,6 +1,12 @@
 <?php
 require_once('function.php');
 include_once('templates/header.php');
+
+// pengecekan user role bukan admin maka tidak boleh mengakses halaman
+if(($_SESSION['role'] != 'admin')) {
+    echo"<script>alert('anda tidak memiliki akses')</script>";
+    echo"<script>window.location.href='index.php'</script>";
+}
 ?>
 
 <!-- Page level plugins -->
@@ -104,7 +110,7 @@ $data = mysqli_fetch_array($query);
 $kodeUser = $data['kodeTerbesar'];
 
 // mengambil angka dari kode barang terbesar, menggunakan fungsi substr dan diubah ke integer dengan (int)
-$urutan = (int) substr($kodeUser, 2, 3);
+$urutan = (int) substr($kodeUser, 3, 2);
 
 // nomor yang diambil akan ditambah 1 untuk menentukan nomor urut berikutnya
 $urutan++;
@@ -114,7 +120,7 @@ $urutan++;
 
 // angka yang diambil tadi digabungkan dengan kode huruf yang kita inginkan, misalnya zt
 $huruf = "usr";
-$kodeUser = $huruf . sprintf("%03s", $urutan);
+$kodeUser = $huruf . sprintf("%02s", $urutan);
 ?>
 
 <!-- Modal Tambah -->

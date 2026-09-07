@@ -3,7 +3,8 @@
 require_once('koneksi.php');
 
 // membuat query ke / dari database
-function query($query) {
+function query($query)
+{
     global $koneksi;
     $result = mysqli_query($koneksi, $query);
     $rows = [];
@@ -32,7 +33,7 @@ function tambah_tamu($data)
         return false;
     }
 
-    $query = "INSERT INTO buku_tamu VALUES ('$kode', '$tanggal', '$nama_tamu', '$alamat', '$no_hp', '$bertemu', '$kepentingan')";
+    $query = "INSERT INTO buku_tamu VALUES ('$kode', '$tanggal', '$nama_tamu', '$alamat', '$no_hp', '$bertemu', '$kepentingan', '$gambar')";
 
     mysqli_query($koneksi, $query);
 
@@ -74,7 +75,8 @@ function ubah_tamu($data)
 }
 
 // function hapus data tamu
-function hapus_tamu($id){
+function hapus_tamu($id)
+{
     global $koneksi;
 
     $query = "DELETE FROM buku_tamu WHERE id_tamu = '$id'";
@@ -84,7 +86,8 @@ function hapus_tamu($id){
     return mysqli_affected_rows($koneksi);
 }
 
-function tambah_user($data){
+function tambah_user($data)
+{
     global $koneksi;
 
     $kode = htmlspecialchars($data["id_user"]);
@@ -93,7 +96,7 @@ function tambah_user($data){
     $user_role = htmlspecialchars($data["user_role"]);
 
     // Enkripsi password dengan password_hash
-    $password_hash = password_hash($password,PASSWORD_DEFAULT);
+    $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
     $query = "INSERT INTO users VALUES ('$kode', '$username', '$password_hash', '$user_role')";
 
@@ -122,7 +125,8 @@ function ubah_user($data)
 }
 
 // function hapus data user
-function hapus_user($id) {
+function hapus_user($id)
+{
     global $koneksi;
 
     $query = "DELETE FROM users WHERE id_user = '$id'";
@@ -133,7 +137,8 @@ function hapus_user($id) {
 }
 
 // function ganti password user
-function ganti_password($data) {
+function ganti_password($data)
+{
     global $koneksi;
     $kode = htmlspecialchars($data["id_user"]);
     $password = htmlspecialchars($data["password"]);
@@ -175,8 +180,8 @@ function uploadGambar()
     }
 
     // cek jika ukurannya terlalu besar
-    if ($ukuranFile > 1000000 ){
-        echo"<script>alert('Ukuran gambar terlalu besar!')</script>";
+    if ($ukuranFile > 1000000) {
+        echo "<script>alert('Ukuran gambar terlalu besar!')</script>";
         return false;
     }
 
@@ -186,8 +191,7 @@ function uploadGambar()
     $namaFileBaru .= '.';
     $namaFileBaru .= $ekstensiGambar;
 
-    move_uploaded_file($tmpName,'assets/upload_gambar/'/$namaFileBaru);
+    move_uploaded_file($tmpName, 'assets/upload_gambar/' . $namaFileBaru);
 
     return $namaFileBaru;
 }
-?>

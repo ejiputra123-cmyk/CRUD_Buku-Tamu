@@ -78,7 +78,7 @@ if (!isset($_SESSION['login'])) {
                         <i class="fas fa-fw fa-book-open"></i>
                         <span>Buku Tamu</span></a>
                 </li>
-                <?php endif; ?>
+            <?php endif; ?>
 
             <li class="nav-item">
                 <a class="nav-link" href="laporan.php">
@@ -99,16 +99,16 @@ if (!isset($_SESSION['login'])) {
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
-            
+
             <?php
             // cek apabila ada user login maka tampilkan logout
-            if(isset($_SESSION['login'])) :
+            if (isset($_SESSION['login'])) :
             ?>
-            <li class="nav-item">
-                <a class="nav-link" href="logout.php">
-                    <i class="fas fa-fw fa-power-off"></i>
-                    <span>Logout</span></a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="logout.php">
+                        <i class="fas fa-fw fa-power-off"></i>
+                        <span>Logout</span></a>
+                </li>
             <?php endif; ?>
 
             <!-- Sidebar Toggler (Sidebar) -->

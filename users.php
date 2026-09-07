@@ -3,9 +3,9 @@ require_once('function.php');
 include_once('templates/header.php');
 
 // pengecekan user role bukan admin maka tidak boleh mengakses halaman
-if(($_SESSION['role'] != 'admin')) {
-    echo"<script>alert('anda tidak memiliki akses')</script>";
-    echo"<script>window.location.href='index.php'</script>";
+if (($_SESSION['role'] != 'admin')) {
+    echo "<script>alert('anda tidak memiliki akses')</script>";
+    echo "<script>window.location.href='index.php'</script>";
 }
 ?>
 
@@ -33,10 +33,10 @@ if(($_SESSION['role'] != 'admin')) {
         <?php
         } else {
         ?>
-        <div class="alert alert-danger" role="alert">
-            Data gagal disimpan!
-        </div>
-    <?php
+            <div class="alert alert-danger" role="alert">
+                Data gagal disimpan!
+            </div>
+        <?php
         }
     } else if (isset($_POST['ganti_password'])) {
         if (ganti_password($_POST) > 0) {
@@ -82,19 +82,19 @@ if(($_SESSION['role'] != 'admin')) {
                         $no = 1;
                         // Query untuk memanggil semua data dari tabel users
                         $users = query("SELECT * FROM users");
-                        foreach($users as $user) : ?>
-                        <tr>
-                            <td><?= $no++; ?></td>
-                            <td><?= $user['username'] ?></td>
-                            <td><?= $user['user_role'] ?></td>
-                            <td>
-                                <button type="button" class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#gantiPassword" data-id="<?= $user['id_user'] ?>">
-                                    <span class="text">Ganti Password</span>
-                                </button>
-                                <a class="btn btn-success" href="edit-user.php?id=<?= $user['id_user'] ?>">Ubah</a>
-                                <a onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')" class="btn btn-danger" href="hapus-user.php?id=<?= $user['id_user']?>">Hapus</a>
-                            </td>
-                        </tr>
+                        foreach ($users as $user) : ?>
+                            <tr>
+                                <td><?= $no++; ?></td>
+                                <td><?= $user['username'] ?></td>
+                                <td><?= $user['user_role'] ?></td>
+                                <td>
+                                    <button type="button" class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#gantiPassword" data-id="<?= $user['id_user'] ?>">
+                                        <span class="text">Ganti Password</span>
+                                    </button>
+                                    <a class="btn btn-success" href="edit-user.php?id=<?= $user['id_user'] ?>">Ubah</a>
+                                    <a onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')" class="btn btn-danger" href="hapus-user.php?id=<?= $user['id_user'] ?>">Hapus</a>
+                                </td>
+                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
@@ -125,40 +125,40 @@ $kodeUser = $huruf . sprintf("%02s", $urutan);
 
 <!-- Modal Tambah -->
 <div class="modal fade" id="tambahModal" tabindex="-1" aria-labelledby="tambahModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="tambahModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-        <div class="modal-body">
-            <form action="" method="post">
-                <input type="hidden" name="id_user" id="id_user" value="<?= $kodeUser ?>">
-                <div class="form-group row">
-                    <label for="username" class="col-sm-3 col-form-label">Username</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="username" name="username">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tambahModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post">
+                    <input type="hidden" name="id_user" id="id_user" value="<?= $kodeUser ?>">
+                    <div class="form-group row">
+                        <label for="username" class="col-sm-3 col-form-label">Username</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="username" name="username">
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <label for="password" class="col-sm-3 col-form-label">Password</label>
-                    <div class="col-sm-8">
-                        <input type="password" class="form-control" name="password" id="password">
+                    <div class="form-group row">
+                        <label for="password" class="col-sm-3 col-form-label">Password</label>
+                        <div class="col-sm-8">
+                            <input type="password" class="form-control" name="password" id="password">
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <label for="user_role" class="col-sm-3 col-form-label">User Role</label>
-                    <div class="col-sm-8">
-                        <select name="user_role" id="user_role" class="form-control">
-                            <option value="admin">Administrator</option>
-                            <option value="operator">Operator</option>
-                        </select>
+                    <div class="form-group row">
+                        <label for="user_role" class="col-sm-3 col-form-label">User Role</label>
+                        <div class="col-sm-8">
+                            <select name="user_role" id="user_role" class="form-control">
+                                <option value="admin">Administrator</option>
+                                <option value="operator">Operator</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
                         <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>

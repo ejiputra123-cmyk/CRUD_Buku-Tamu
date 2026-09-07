@@ -6,7 +6,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 $spreadsheet = new Spreadsheet();
-$sheet = $spreadsheet -> getActiveSheet();
+$sheet = $spreadsheet->getActiveSheet();
 
 $sheet->setCellValue('A1', 'No');
 $sheet->setCellValue('B1', 'TANGGAL');
@@ -27,16 +27,15 @@ if (isset($_GET['cari'])) {
 $i = 2;
 $no = 1;
 while ($d = mysqli_fetch_array($data)) {
-    $sheet -> setCellValue('A' . $i, $no++);
-    $sheet -> setCellValue('B' . $i, $d['tanggal']);
-    $sheet -> setCellValue('C' . $i, $d['nama_tamu']);
-    $sheet -> setCellValue('D' . $i, $d['alamat']);
-    $sheet -> setCellValue('E' . $i, $d['no_hp']);
-    $sheet -> setCellValue('F' . $i, $d['bertemu']);
-    $sheet -> setCellValue('G' . $i, $d['kepentingan']);
+    $sheet->setCellValue('A' . $i, $no++);
+    $sheet->setCellValue('B' . $i, $d['tanggal']);
+    $sheet->setCellValue('C' . $i, $d['nama_tamu']);
+    $sheet->setCellValue('D' . $i, $d['alamat']);
+    $sheet->setCellValue('E' . $i, $d['no_hp']);
+    $sheet->setCellValue('F' . $i, $d['bertemu']);
+    $sheet->setCellValue('G' . $i, $d['kepentingan']);
     $i++;
 }
 $writer = new Xlsx($spreadsheet);
-$writer -> save('Laporan Buku Tamu.xlsx');
+$writer->save('Laporan Buku Tamu.xlsx');
 echo "<script>window.location = 'Laporan Buku Tamu.xlsx'</script>";
-?>

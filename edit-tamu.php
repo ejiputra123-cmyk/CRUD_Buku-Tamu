@@ -13,7 +13,7 @@ if (isset($_GET['id'])) {
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
-     <h1 class="h3 mb-4 text-gray-800">Ubah Data Tamu</h1>
+    <h1 class="h3 mb-4 text-gray-800">Ubah Data Tamu</h1>
 
     <?php
     // jika ada tombol simpan
@@ -34,8 +34,8 @@ if (isset($_GET['id'])) {
     }
     ?>
 
-     <!-- Konten Edit Data Tamu -->
-      <div class="card shadow mb-4">
+    <!-- Konten Edit Data Tamu -->
+    <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6>Data Tamu</h6>
         </div>
@@ -100,10 +100,10 @@ if (isset($_GET['id'])) {
                     <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
-      </div>
+        </div>
 
-<!-- /.contaier-fluid -->
+        <!-- /.contaier-fluid -->
 
-<?php
-include_once('templates/footer.php');
-?>
+        <?php
+        include_once('templates/footer.php');
+        ?>

@@ -15,4 +15,3 @@ if (isset($_GET['id'])) {
         echo "<script>alert('Data gagal di hapus!')</script>";
     }
 }
-?>

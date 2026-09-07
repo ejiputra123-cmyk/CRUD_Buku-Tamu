@@ -4,8 +4,8 @@ include_once('templates/header.php');
 
 // pengecekan user role bukan operator maka tidak boleh mengakses halaman
 if ($_SESSION['role'] != 'operator') {
-    echo"<script>alert('anda tidak memiliki akses')</script>";
-    echo"<script>window.location.href='index.php'</script>";
+    echo "<script>alert('anda tidak memiliki akses')</script>";
+    echo "<script>window.location.href='index.php'</script>";
 }
 ?>
 
@@ -33,9 +33,9 @@ if ($_SESSION['role'] != 'operator') {
         <?php
         } else {
         ?>
-        <div class="alert alert-danger" role="alert">
-            Data gagal disimpan!
-        </div>
+            <div class="alert alert-danger" role="alert">
+                Data gagal disimpan!
+            </div>
     <?php
         }
     }
@@ -66,27 +66,27 @@ if ($_SESSION['role'] != 'operator') {
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    
+
                     <tbody>
                         <?php
                         // penomoran auto-increment
                         $no = 1;
                         // Query untuk memanggil semua data dari tabel buku_tamu
                         $buku_tamu = query("SELECT * FROM buku_tamu");
-                        foreach($buku_tamu as $tamu) : ?>
-                        <tr>
-                            <td><?= $no++; ?></td>
-                            <td><?= $tamu['tanggal'] ?></td>
-                            <td><?= $tamu['nama_tamu'] ?></td>
-                            <td><?= $tamu['alamat'] ?></td>
-                            <td><?= $tamu['no_hp'] ?></td>
-                            <td><?= $tamu['bertemu'] ?></td>
-                            <td><?= $tamu['kepentingan'] ?></td>
-                            <td>
-                                <a class="btn btn-success" href="edit-tamu.php?id=<?= $tamu['id_tamu'] ?>">Ubah</a>
-                                <a onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')" class="btn btn-danger" href="hapus-tamu.php?id=<?= $tamu['id_tamu']?>">Hapus</a>
-                            </td>
-                        </tr>
+                        foreach ($buku_tamu as $tamu) : ?>
+                            <tr>
+                                <td><?= $no++; ?></td>
+                                <td><?= $tamu['tanggal'] ?></td>
+                                <td><?= $tamu['nama_tamu'] ?></td>
+                                <td><?= $tamu['alamat'] ?></td>
+                                <td><?= $tamu['no_hp'] ?></td>
+                                <td><?= $tamu['bertemu'] ?></td>
+                                <td><?= $tamu['kepentingan'] ?></td>
+                                <td>
+                                    <a class="btn btn-success" href="edit-tamu.php?id=<?= $tamu['id_tamu'] ?>">Ubah</a>
+                                    <a onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')" class="btn btn-danger" href="hapus-tamu.php?id=<?= $tamu['id_tamu'] ?>">Hapus</a>
+                                </td>
+                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
@@ -117,58 +117,58 @@ $kodeTamu = $huruf . sprintf("%03s", $urutan);
 
 <!-- Modal Tambah -->
 <div class="modal fade" id="tambahModal" tabindex="-1" aria-labelledby="tambahModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="tambahModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-        <div class="modal-body">
-            <form action="" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="id_tamu" id="id_tamu" value="<?= $kodeTamu ?>">
-                <div class="form-group row">
-                    <label for="nama_tamu" class="col-sm-3 col-form-label">Nama Tamu</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="nama_tamu" name="nama_tamu">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tambahModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="id_tamu" id="id_tamu" value="<?= $kodeTamu ?>">
+                    <div class="form-group row">
+                        <label for="nama_tamu" class="col-sm-3 col-form-label">Nama Tamu</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="nama_tamu" name="nama_tamu">
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
-                    <div class="col-sm-8">
-                        <textarea class="form-control" name="alamat" id="alamat"></textarea>
+                    <div class="form-group row">
+                        <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
+                        <div class="col-sm-8">
+                            <textarea class="form-control" name="alamat" id="alamat"></textarea>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <label for="no_hp" class="col-sm-3 col-form-label">No. Telepon</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="no_hp" name="no_hp">
+                    <div class="form-group row">
+                        <label for="no_hp" class="col-sm-3 col-form-label">No. Telepon</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="no_hp" name="no_hp">
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <label for="bertemu" class="col-sm-3 col-form-label">Bertemu dg.</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="bertemu" name="bertemu">
+                    <div class="form-group row">
+                        <label for="bertemu" class="col-sm-3 col-form-label">Bertemu dg.</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="bertemu" name="bertemu">
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <label for="kepentingan" class="col-sm-3 col-form-label">Kepentingan</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="kepentingan" name="kepentingan">
+                    <div class="form-group row">
+                        <label for="kepentingan" class="col-sm-3 col-form-label">Kepentingan</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="kepentingan" name="kepentingan">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="gambar" class="col-sm-3 col-form-label">Unggah Foto</label>
-                    <div class="custom-file col-sm-8">
-                        <input type="file" class="custom-file-input" id="gambar" name="gambar">
-                        <label class="custom-file-label" for="gambar">Choose file</label>
+                    <div class="form-group row">
+                        <label for="gambar" class="col-sm-3 col-form-label">Unggah Foto</label>
+                        <div class="custom-file col-sm-8">
+                            <input type="file" class="custom-file-input" id="gambar" name="gambar">
+                            <label class="custom-file-label" for="gambar">Choose file</label>
+                        </div>
                     </div>
-                </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
                         <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>

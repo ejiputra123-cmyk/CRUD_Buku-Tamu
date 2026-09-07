@@ -66,7 +66,7 @@ if (isset($_POST['tampilkan'])) {
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <a href="<?= isset($_POST['tampilkan']) ? $link : 'export-laporan.php'; ?>" target="_blank" class="btn btn-success btn-icon-split">
+            <a href="<?= isset($_POST['tampilkan']) ? $link : 'export-laporan.php'; ?>" class="btn btn-success btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fas fa-file-excel"></i>
                 </span>
